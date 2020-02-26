@@ -9,7 +9,7 @@ server.use(helmet())
 server.use(express.json())
 server.use(cors())
 
-aerver.get('/', (req,res) => {
+server.get('/', (req,res) => {
     res.status(200).json({message: 'Welcome to the How-To Api'})
 })
 
