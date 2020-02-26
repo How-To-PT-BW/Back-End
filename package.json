@@ -1,0 +1,39 @@
+{
+  "name": "Back-End",
+  "version": "1.0.0",
+  "description": "How-to\r How-to\r NAME\r How-to\r PITCH\r Have a life hack? Share it on how-to. Posts with the most likes/reviews/tried its will be at the top of the feed. Simplifying life for everyone.\r MVP\r 1. An on-boarding process for a new general user (user that will consume the service)\r  2. On-boarding process for user who wants to generate content (i.e. organize how-to tutorials)\r  3. Ability to easily create / setup a how - to guide\r  4. Ability to easily edit / delete an a how-to guide\r  5. Ability to easily view/ search / find /filter how-to guides\r STRETCH\r Add the ability to add photos and/or videos to be uploaded with an API like cloudinary.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/How-To-PT-BW/Back-End.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/How-To-PT-BW/Back-End/issues"
+  },
+  "homepage": "https://github.com/How-To-PT-BW/Back-End#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.3",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.10",
+    "pg": "^7.18.2",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  }
+}
