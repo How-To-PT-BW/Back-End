@@ -4,6 +4,9 @@ exports.up = function(knex) {
         tbl.increments()
         tbl.string('username').notNullable().unique()
         tbl.string('password').notNullable()
+        tbl.string('email').unique()
+        tbl.text('bio')
+        tbl.boolean('allowPost').defaultTo(false)
     })
 };
 
