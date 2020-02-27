@@ -78,4 +78,23 @@ router.post('/', (req,res) => {
         })
 })
 
+router.post('/instructions', (req,res) => {
+    db.insertInstructions(req.body)
+        .then(id => {
+            db.findByInstructionId(id)
+                .then(ins => {
+                    const [newIns] = ins
+                    res.status(201).json({...newIns, message: 'successfully added new instruction'})
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.status(500).json({message: 'unable to find new instruction'})
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'unable to add new instruction'})
+        })
+})
+
 module.exports = router
