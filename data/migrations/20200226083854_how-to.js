@@ -20,6 +20,8 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('users')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
     })
     .createTable('instructions', tbl => {
         tbl.increments()
@@ -31,6 +33,8 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('how_to')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
     })
 };
 
