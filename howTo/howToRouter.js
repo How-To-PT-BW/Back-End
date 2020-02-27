@@ -17,7 +17,7 @@ router.get('/:id', (req,res) => {
     db.findById(req.params.id)
         .then(data => {
             const howTo = data
-            // res.status(200).json(howTo)
+            howTo ?
             db.findInstructionsByHowToId(howTo.id)
                 .then(instructions => {
                     res.status(200).json({
@@ -27,7 +27,8 @@ router.get('/:id', (req,res) => {
                 .catch(err => {
                     console.log(err)
                     res.status(500).json({message: 'unable to get instructions for how-to'})
-                })
+                }):
+                res.status(403).json({message: 'how to with specified id does not exist'})
         })
         .catch(err => {
             console.log(err)
@@ -119,8 +120,8 @@ router.put('/instructions/:id', (req,res) => {
     db.updateInstructions(req.params.id, req.body)
         .then(id => {
             db.findByInstructionId(req.params.id)
-                .then(ins => {
-                    res.status(203).json({message: 'successfully updated', ins})
+                .then(updated => {
+                    res.status(203).json({message: 'successfully updated', updated})
                 })
                 .catch(err => {
                     console.log(err)
@@ -133,4 +134,14 @@ router.put('/instructions/:id', (req,res) => {
         })
 })
 
+router.delete('/:id', (req,res) => {
+    db.remove(req.params.id)
+        .then(response => {
+            res.status(201).json({message: 'successfully removed', response})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'unable to remove how to'})
+        })
+})
 module.exports = router
