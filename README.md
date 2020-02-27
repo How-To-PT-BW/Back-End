@@ -1,4 +1,60 @@
 # Back-End
+## How-To Base URL: https://how-to-lifehack.herokuapp.com/
+---
+## Endpoint Summary Table
+---
+|Type     |Endpoint           |Description        |Auth|
+|:-------:|:-----------------:|:-----------------:|:--:|
+|POST     |/users/register    |Register User      |No  |
+|POST     |/users/login       |Login User         |No  |
+
+## Token must be in the header under Authorization for Auth endpoints
+---
+## Register
+### Endpoint /users/register
+```
+    {
+        "username": "string",       required
+        "password": "string",       required
+        "bio": "text block",
+        "email": "string",
+        "allowPost": "boolean"      defaults to false
+    }
+```
+#### Returns
+```
+    {
+        "id": "user id",
+        "message": "success message",
+        "username": "registered user name",
+        "bio": "user's bio description",
+        "email": "users email address",
+        "token": "authentication token",
+        "allowPost": "user access to post how-to"
+    }
+```
+---
+## Login
+### Endpoint /users/login
+```
+    {
+        "username": "user's registered user name",     required
+        "password": "user's password"                  required
+    }
+```
+#### Returns
+```
+    {
+        "id": "user id",
+        "message": "success message",
+        "username": "registered user name",
+        "bio": "user's bio description",
+        "email": "users email address",
+        "token": "authentication token",
+        "allowPost": "user access to post how-to"
+    }
+```
+---
 How-to
 How-to
 NAME
