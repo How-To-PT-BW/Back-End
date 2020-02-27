@@ -97,4 +97,40 @@ router.post('/instructions', (req,res) => {
         })
 })
 
+router.put('/:id', (req,res) => {
+    db.update(req.params.id, req.body)
+        .then(id => {
+            db.findById(req.params.id)
+                .then(updated => {
+                    res.status(203).json({message: 'successfully updated', updated})
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.status(500).json({message: 'unable to find updated how to'})
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'unable to edit how to'})
+        })
+})
+
+router.put('/instructions/:id', (req,res) => {
+    db.updateInstructions(req.params.id, req.body)
+        .then(id => {
+            db.findByInstructionId(req.params.id)
+                .then(ins => {
+                    res.status(203).json({message: 'successfully updated', ins})
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.status(500).json({message: 'unable to get updated instruction'})
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'unable to update instruction'})
+        })
+})
+
 module.exports = router

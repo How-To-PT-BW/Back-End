@@ -47,6 +47,7 @@ function insertInstructions(instructions) {
 
 function update(id, howTo) {
     return db('how_to').where({ id }).update(howTo)
+        
 }
 
 function updateInstructions(id, instructions) {
