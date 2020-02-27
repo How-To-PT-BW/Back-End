@@ -3,7 +3,9 @@ const db = require('../data/dbConfig')
 module.exports = {
     find,
     findByUserId,
-    findByHowToId,
+    findInstructionsByHowToId,
+    findById,
+    findByInstructionId,
     insert,
     insertInstructions,
     update,
@@ -15,14 +17,22 @@ function find() {
     return db('how_to')
 }
 
-function findByUserId(id) {
+function findById(id) {
     return db('how_to').where({ id })
-        .then(([howTo]) => howTo)
+        .then(([data]) => data)
 }
 
-function findByHowToId(id) {
+function findByUserId(user_id) {
+    return db('how_to').where({ user_id }) 
+           
+}
+
+function findInstructionsByHowToId(how_to_id) {
+    return db('instructions').where({ how_to_id })
+}
+
+function findByInstructionId(id) {
     return db('instructions').where({ id })
-        .then(([instructions]) => instructions)
 }
 
 function insert(howTo) {
