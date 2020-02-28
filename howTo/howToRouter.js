@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('./howToModal')
 const jwt = require('jsonwebtoken')
+const middleware = require('../middleware')
 
 router.get('/', (req,res) => {
     db.find()
@@ -61,7 +62,7 @@ router.get('/instructions/:id', (req,res) => {
         })
 })
 
-router.post('/', (req,res) => {
+router.post('/', [middleware.validateToken, middleware.validatePost], (req,res) => {
     db.insert(req.body)
         .then(data => {
             db.findById(data)
@@ -79,7 +80,7 @@ router.post('/', (req,res) => {
         })
 })
 
-router.post('/instructions', (req,res) => {
+router.post('/instructions',[middleware.validateToken, middleware.validatePost], (req,res) => {
     db.insertInstructions(req.body)
         .then(id => {
             db.findByInstructionId(id)
@@ -98,7 +99,7 @@ router.post('/instructions', (req,res) => {
         })
 })
 
-router.put('/:id', (req,res) => {
+router.put('/:id',[middleware.validateToken, middleware.validatePost], (req,res) => {
     db.update(req.params.id, req.body)
         .then(id => {
             db.findById(req.params.id)
@@ -116,7 +117,7 @@ router.put('/:id', (req,res) => {
         })
 })
 
-router.put('/instructions/:id', (req,res) => {
+router.put('/instructions/:id',[middleware.validateToken, middleware.validatePost], (req,res) => {
     db.updateInstructions(req.params.id, req.body)
         .then(id => {
             db.findByInstructionId(req.params.id)
@@ -134,7 +135,7 @@ router.put('/instructions/:id', (req,res) => {
         })
 })
 
-router.delete('/:id', (req,res) => {
+router.delete('/:id',[middleware.validateToken, middleware.validatePost], (req,res) => {
     db.remove(req.params.id)
         .then(response => {
             res.status(201).json({message: 'successfully removed', response})
