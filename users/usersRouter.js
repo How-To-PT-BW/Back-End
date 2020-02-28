@@ -14,7 +14,7 @@ router.post('/register', (req,res) => {
                     const token = generateToken(user)
                     const {id, username, email, bio, allowPost} = user
                     res.status(201).json({message: `Successfully created user ${username}`, 
-                        id, token, username, email, bio, allowPost})
+                        id, token, username, email, bio, allowPost: allowPost ? true : false})
                 })
                 .catch(err => {
                     console.log(err)
@@ -34,7 +34,7 @@ router.post('/login', (req,res) => {
                 const token = generateToken(user)
                 const {id, username, email, bio, allowPost} = user
                     res.status(200).json({message: `Successfully logged in user ${username}`, 
-                        id, token, username, email, bio, allowPost})
+                        id, token, username, email, bio, allowPost: allowPost ? true : false})
             }else{
                 res.status(403).json({message: 'Invalid username or password'})
             }
