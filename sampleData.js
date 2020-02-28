@@ -14,6 +14,10 @@ userData = {
 howToData = {
     id: '',
     title: '',
-    instructions: '',
-    userId: ''
+    problem:'',
+    solution:'',
+    instructions: [{steptitle, desc}, {steptitle, desc}],
+    userId: '',
+    topic:'',
+    liked: 0
 }
