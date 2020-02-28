@@ -18,6 +18,7 @@
 |DELETE   |/how-to/:id              |remove how-to and steps |Yes |
 
 ## Token must be in the header under Authorization for Auth endpoints
+## User must have allowPost:true to edit or post how-to
 ---
 ## POST Register
 ### Endpoint /users/register
