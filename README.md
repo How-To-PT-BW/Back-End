@@ -4,9 +4,18 @@
 ## Endpoint Summary Table
 ---
 |Type     |Endpoint           |Description        |Auth|
-|:-------:|:-----------------:|:-----------------:|:--:|
-|POST     |/users/register    |Register User      |No  |
-|POST     |/users/login       |Login User         |No  |
+|:-------:|:-----------------------:|:----------------------:|:--:|
+|POST     |/users/register          |Register User           |No  |
+|POST     |/users/login             |Login User              |No  |
+|GET      |/how-to/                 |get all how-to's        |No  |
+|GET      |/how-to/:id              |get how-to by id        |No  |
+|GET      |/how-to/user/:id         |get how-to by user id   |No  |
+|GET      |/how-to/instructions/:id |get step by id          |No  |
+|POST     |/how-to                  |add new how-to          |Yes |
+|POST     |/how-to/instructions     |add new step for how-to |Yes |
+|PUT      |/how-to/:id              |edit existing how-to    |Yes |
+|PUT      |/how-to/instructions/:id |edit existing step      |Yes |
+|DELETE   |/how-to/:id              |remove how-to and steps |Yes |
 
 ## Token must be in the header under Authorization for Auth endpoints
 ---
