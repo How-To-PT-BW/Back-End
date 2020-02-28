@@ -19,7 +19,7 @@
 
 ## Token must be in the header under Authorization for Auth endpoints
 ---
-## Register
+## POST Register
 ### Endpoint /users/register
 ```
     {
@@ -43,7 +43,7 @@
     }
 ```
 ---
-## Login
+## POST Login
 ### Endpoint /users/login
 ```
     {
@@ -61,6 +61,185 @@
         "email": "users email address",
         "token": "authentication token",
         "allowPost": "user access to post how-to"
+    }
+```
+---
+## GET all How-To's
+### Endpoint /how-to
+#### Returns Array of All How-To's
+```
+    [
+        {
+            "id": integer,
+            "title": "string",                        
+            "problem": "string",                      
+            "liked": integer,
+            "solution": "text",                       
+            "topic": "string",
+            "user_id": integer
+        }
+    ]
+```
+---
+## GET How-to by Id
+### Endpoint /how-to/:id
+#### Returns How-to with an array of all the instructions
+```
+    {
+        "id": integer,
+        "title": "string",                        
+        "problem": "string",                      
+        "liked": integer,
+        "solution": "text",                       
+        "topic": "string",
+        "user_id": integer,
+        "instructions": [
+            {
+                "id": integer,
+                "step_number": integer,
+                "step_title": "string",
+                "description": "text",
+                "how_to_id": integer
+            }
+        ]    
+    }
+```
+---
+## GET all users how-to's by user id
+### Endpoint /how-to/user/:id
+#### Returns How-to's that are register to a given user
+```
+    [
+        {
+            "id": integer,
+            "title": "string",                        
+            "problem": "string",                      
+            "liked": integer,
+            "solution": "text",                       
+            "topic": "string",
+            "user_id": integer
+        }
+    ]
+```
+---
+## GET instructions by instruction id
+### Endpoint /how-to/insrtuctions/:id
+#### Returns instruction with given id
+```
+    {
+        "id": integer,
+        "step_number": integer,
+        "step_title": "string",
+        "description": "text",
+        "how_to_id": integer
+    }
+```
+---
+## POST add a new how-to
+### Endpoint /how-to
+```
+    {
+        "title": "string",              required                        
+        "problem": "string",            required
+        "solution": "text",             required          
+        "topic": "string",
+        "user_id": integer              required
+    }
+```
+#### Returns newly created how-to 
+```
+    {
+        "id": integer,
+        "title": "string",                        
+        "problem": "string",                      
+        "liked": integer,
+        "solution": "text",                       
+        "topic": "string",
+        "user_id": integer,
+        "message": "string"
+    }
+```
+---
+## POST add instruction to how-to
+### Endpoint /how-to/instructions
+```
+    {                  
+        "step_number": integer,         required
+        "step_title": "string",         required
+        "description": "text",          required
+        "how_to_id": integer,           required
+    }
+```
+#### Returns
+```
+    {
+        "id": integer,
+        "step_number": integer,
+        "step_title": "string",
+        "description": "text",
+        "how_to_id": integer,
+        "message": "string"
+    }
+```
+---
+## PUT Edit existing how-to by id
+### Endpoint /how-to/:id
+```
+    {
+        "title": "string",      Edit any of these fields                               
+        "problem": "string",            
+        "solution": "text",                     
+        "topic": "string"
+    }
+```
+#### Returns Edited how-to
+```
+    {
+        "message": "string",
+        "updated": {
+            "id": integer,
+            "title": "string",
+            "problem": "string",
+            "liked": integer,
+            "solution": "text",
+            "topic": "string",
+            "user_id": integer
+        }
+    }
+```
+---
+## PUT Edit existing instruction by given id
+### Endpoint /how-to/instructions/:id
+```
+    {
+        "step_number" : integer,    Edit any of these fields
+	    "step_title": "string",
+	    "description": "text"
+    }
+```
+#### Returns Edited instruction
+```
+    {
+        "message": "string",
+        "updated": [
+            {
+                "id": integer,
+                "step_number": integer,
+                "step_title": "string",
+                "description": "text",
+                "how_to_id": integer
+            }
+        ]
+    }
+```
+---
+## DELETE Delete how-to with given id
+### Endpoint /how-to/:id
+#### Returns success response
+```
+    {
+        "message": "successfully removed",
+        "response": 1
     }
 ```
 ---
